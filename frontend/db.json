@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "username": "karthik",
+      "password": "karthik"
+    },
+    {
+      "username": "sai",
+      "password": "sai"
+    },
+    {
+      "username": "mahi",
+      "password": "mahi",
+      "email": "mahith@gmail.com",
+      "firstName": "mahith ",
+      "lastName": "sai"
+    }
+  ]
+}

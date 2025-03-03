@@ -31,6 +31,9 @@ const Navbar = () => {
     { text: 'Products', path: '/products' },
     { text: 'Inventory', path: '/inventory' },
     { text: 'Reports', path: '/reports' },
+    { text: 'Dashboard', path: '/dashboard' },
+    { text: 'Profile', path: '/profile' },
+    { text: 'Sign In', path: '/login' },
   ];
 
   const handleDrawerToggle = () => {
@@ -175,4 +178,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;
