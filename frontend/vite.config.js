@@ -6,12 +6,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',  // Changed from 8080 to 5000
+        target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       },
       '/users': {
-        target: 'http://localhost:5000',  // Changed from 8080 to 5000
+        target: 'http://localhost:5000',
         changeOrigin: true,
         secure: false,
       }

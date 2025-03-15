@@ -2,13 +2,18 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 5000;  // Changed from 8080 to 5000
-// Change the DB_PATH to point to the server directory instead of frontend
+const PORT = process.env.PORT || 5000;
 const DB_PATH = path.join(__dirname, 'db.json');
 
 const server = http.createServer(async (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // Allow both local development and production URLs
+  const allowedOrigins = ['http://localhost:5173', 'https://track-stack.vercel.app'];
+  const origin = req.headers.origin;
+  
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 

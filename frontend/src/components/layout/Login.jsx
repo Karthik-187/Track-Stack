@@ -33,7 +33,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/users');  // Changed from 8080 to 5000
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`);
       const data = await response.json();
       const users = data || [];
 
@@ -48,7 +48,7 @@ const Login = () => {
       alert('Login successful');
       navigate('/');
     } catch (error) {
-      console.error('Error logging in:', error);
+      console.error('Login error:', error);
       alert('Login failed');
     }
   };

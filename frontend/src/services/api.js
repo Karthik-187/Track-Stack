@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';  // Changed from 8080 to 5000
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const login = async (username, password) => {
-  const response = await axios.post(`${API_URL}/auth/login`, {
+  const response = await axios.post(`${API_URL}/users`, {
     username,
     password,
   });
@@ -13,10 +13,6 @@ export const login = async (username, password) => {
   return response.data;
 };
 
-export const register = async (username, email, password) => {
-  return axios.post(`${API_URL}/auth/register`, {
-    username,
-    email,
-    password,
-  });
+export const register = async (userData) => {
+  return axios.post(`${API_URL}/users`, userData);
 };
