@@ -36,7 +36,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/users');  // Changed from 8080 to 5000
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`);
       const data = await response.json();
       const users = data || [];
 
@@ -56,7 +56,7 @@ const Register = () => {
       };
 
       // Write back to db.json
-      const postResponse = await fetch('http://localhost:5000/users', {  // Changed from 8080 to 5000
+      const postResponse = await fetch(`${import.meta.env.VITE_API_URL}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -71,7 +71,7 @@ const Register = () => {
       alert('Registration successful');
       navigate('/login');
     } catch (error) {
-      console.error('Error registering user:', error);
+      console.error('Registration error:', error);
       alert('Registration failed');
     }
   };
