@@ -8,6 +8,10 @@ import {
   InputAdornment,
   Container,
   Grid,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
@@ -29,27 +33,61 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('VIEWER');
+
+  // Add role change handler
+  const handleRoleChange = (event) => {
+    setRole(event.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`);
-      const data = await response.json();
-      const users = data || [];
+      console.log('Attempting login with:', { username, password, role });
 
-      // Check if user exists and password matches
-      const user = users.find(u => u.username === username && u.password === password);
-      if (!user) {
-        alert('Invalid username or password');
-        return;
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(errorData || 'Invalid credentials');
       }
 
-      // Successful login
-      alert('Login successful');
-      navigate('/');
+      // Get the token as text first
+      const token = await response.text();
+      
+      // Store the token
+      localStorage.setItem('token', token);
+      
+      // Decode JWT token to get role
+      const tokenParts = token.split('.');
+      const payload = JSON.parse(atob(tokenParts[1]));
+      const userRole = payload.role || role;
+      
+      localStorage.setItem('userRole', userRole);
+
+      // Role-based navigation
+      switch (userRole) {
+        case 'ADMIN':
+          navigate('/dashboard');
+          break;
+        case 'CONTRIBUTOR':
+          navigate('/inventory');
+          break;
+        case 'VIEWER':
+          navigate('/products');
+          break;
+        default:
+          navigate('/');
+      }
     } catch (error) {
       console.error('Login error:', error);
-      alert('Login failed');
+      alert(`Login failed: ${error.message}`);
     }
   };
 
@@ -114,6 +152,20 @@ const Login = () => {
                   ),
                 }}
               />
+              <FormControl fullWidth margin="normal">
+                <InputLabel id="role-label">Role</InputLabel>
+                <Select
+                  labelId="role-label"
+                  value={role}
+                  label="Role"
+                  onChange={handleRoleChange}
+                >
+                  <MenuItem value="VIEWER">Viewer</MenuItem>
+                  <MenuItem value="CONTRIBUTOR">Contributor</MenuItem>
+                  <MenuItem value="ADMIN">Admin</MenuItem>
+                </Select>
+              </FormControl>
+
               <Button
                 variant="contained"
                 type="submit"
