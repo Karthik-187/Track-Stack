@@ -6,30 +6,21 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fontsource/poppins": "^5.2.5",
-    "@mui/icons-material": "^5.16.14",
-    "@mui/material": "^5.16.14",
-    "framer-motion": "^10.18.0",
+    "@mui/icons-material": "^6.4.8",
+    "@mui/material": "^6.4.8",
+    "framer-motion": "^12.5.0",
     "frontend": "file:",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.30.0"
+    "react-router-dom": "^7.3.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.48",
-    "@types/react-dom": "^18.2.18",
-    "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.56.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^5.0.12"
-  },
-  "homepage": "https://yourusername.github.io/TrackStack"
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.2.2"
+  }
 }

@@ -1,0 +1,16 @@
+com\trackstack\model\Asset.class
+com\trackstack\controller\AssetController.class
+com\trackstack\filter\JwtAuthenticationFilter.class
+com\trackstack\util\JwtUtil.class
+com\trackstack\repository\UserRepository.class
+com\trackstack\model\User.class
+com\trackstack\service\CustomUserDetailsService.class
+com\trackstack\service\UserServiceImpl.class
+com\trackstack\config\CorsConfig.class
+com\trackstack\service\AssetService.class
+com\trackstack\TrackStackApplication.class
+com\trackstack\controller\UserController.class
+com\trackstack\config\SecurityConfig.class
+com\trackstack\controller\AuthController.class
+com\trackstack\service\UserService.class
+com\trackstack\repository\AssetRepository.class
